@@ -1,0 +1,56 @@
+
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% comment %} <script src="<https://cdn.tailwindcss.com>"></script> {% endcomment %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+  <style>
+    main {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 1%;
+      margin-left: 20%;
+      margin-right: 20%;
+    }
+    #navbar {
+
+    }
+    nav > a:hover {
+      text-decoration: underline;
+    }
+
+   
+  </style>
+</head>
+<body>
+  <main>
+    <div id='navbar'>
+      <nav class='navbar is-transparent' role='navigation'>
+        <a class='navbar-item has-text-black' href='/'><h2 class='title is-2' >Chase Xu</h2></a>
+        <span aria-hidden="true"></span>
+        <div class='navbar-end'>
+          <a class="navbar-item">About</a>
+          <a class="navbar-item">Resume</a>
+          <a class="navbar-item">Top Posts</a>
+        </div>
+      </nav>
+    </div>
+    <div id='blog'>
+      {%block homepage%}
+      {%endblock %}
+      {% comment %} {%block resume%}
+      {%endblock%}
+      {%block about%}
+      {%endblock%}
+      {%block toppost%}
+      {%endblock%} {% endcomment %}
+    </div>
+  </main>
+  
+</body>
+</html>
