@@ -27,4 +27,4 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python /home/runner/work/django-blog/blog_posts/manage.py test
+        python ../blog_posts/manage.py test
