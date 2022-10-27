@@ -1,22 +1,42 @@
 {% extends 'base.html' %}
 {% block homepage %}
 
-<div>
-  {% comment %} {% if object_list%}
-      {% for obj in object_list %} {% endcomment %}
-        <div class='box'>
+<style>
+  #content {
+    margin-top: 3%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+  }
+  .box {
+    box-shadow: none;
+    cursor: pointer;
+  }
+  .box:hover #box-title{
+      text-decoration: underline;
+      text: underline;
+  }
+</style>
+
+
+<div id='content'>
+  {% if object_list%}
+      {% for obj in object_list %}
+        <box class='box'>
           <article class="media">
-            <div class="media-left">
-              <figure class="image is-64x64">
-                <img src="https://versions.bulma.io/0.7.0/images/placeholders/128x128.png" alt="Image">
-              </figure>
-            </div>
             <div class="media-content">
+              <h1 id='box-title' class='title is-3' style='font-family: serif'>{{obj.title}}</h1>
               <div class="content">
                 <p>
-                  <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+                  <small>@{{obj.author}}</small> <small>{{obj.timestamp}}</small>
                   <br>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+                  {% comment %} {{obj.categories.all}} {% endcomment %}
+                  {% for cat in obj.categories.all%}
+                    <span class="tag is-light is-normal is-rounded"><small>{{cat}}</small></span>
+                  {%endfor%}  
+
+                  <br>
+                  {{obj.overview}}
                 </p>
               </div>
               <nav class="level is-mobile">
@@ -40,9 +60,9 @@
               </nav>
             </div>
           </article>
-        </div>
-      {% comment %} {%endfor%}
-  {% endif %} {% endcomment %}
+        </box>
+      {%endfor%}
+  {% endif %}
 
 </div>
 {%endblock homepage%}
