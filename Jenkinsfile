@@ -13,6 +13,7 @@ pipeline{
     stage('test'){
       steps{
         echo 'testing the application...'
+        echo 'mid of testing'
         echo 'finished testing'
       }
     }
