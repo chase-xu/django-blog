@@ -7,8 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% comment %} <script src="<https://cdn.tailwindcss.com>"></script> {% endcomment %}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
+    body{
+      margin-bottom: 20%;
+    }
     main {
       display: flex;
       flex-direction: column;
@@ -16,6 +19,7 @@
       padding-top: 1%;
       margin-left: 25%;
       margin-right: 25%;
+      margin-bottom: 20%;
     }
     nav > a:hover {
       text-decoration: underline;
@@ -28,24 +32,28 @@
   <main>
     <div id='navbar'>
       <nav class='navbar is-transparent' role='navigation'>
-        <a class='navbar-item has-text-black' href='/'><h2 class='title is-2' >Chase Xu</h2></a>
+        <a class='navbar-item has-text-black' href='/posts/featured/'><h2 class='title is-2' >Chase Xu</h2></a>
         <span aria-hidden="true"></span>
         <div class='navbar-end'>
-          <a class="navbar-item">About</a>
-          <a class="navbar-item">Resume</a>
-          <a class="navbar-item">Top Posts</a>
+          <a class="navbar-item" href='/posts/featured/'>Featured</a>
+          <a class="navbar-item" href='/posts/all/'>Posts</a>
+          <a class="navbar-item" >About</a>
+          <a class="navbar-item" href='/resume'>Resume</a>
+          <a class="navbar-item" href='/projects'>Projects</a>
         </div>
       </nav>
     </div>
     <div id='blog'>
       {%block homepage%}
       {%endblock %}
-      {% comment %} {%block resume%}
+      {%block all_posts%}
       {%endblock%}
-      {%block about%}
+      {%block post%}
       {%endblock%}
-      {%block toppost%}
-      {%endblock%} {% endcomment %}
+      {%block resume%}
+      {%endblock resume%}
+      {%block projects%}
+      {%endblock%}
     </div>
   </main>
   

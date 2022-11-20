@@ -17,14 +17,25 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from blog.views import homepage, post, about, category_post_list, allposts
+from resume.views import resume
+from projects.views import project
+
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
+
+
 
 urlpatterns = [
-    path('', homepage, name = 'homepage'),
+    path('', homepage, name = 'posts'),
+    path('post/<int:postid>/', post, name='post'),
+    path('posts/all/', allposts, name='allposts'),
+    path('posts/featured/', homepage, name='posts'),
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
-    # path('post/<slug>/', post, name = 'post'),
-    # path('about/', about,name = 'about' ),
-    # path('postlist/<slug>/', category_post_list, name = 'postlist'),
-    # path('posts/', allposts, name = 'allposts'),
+    path("resume/", resume, name='resume'),
+    path('projects/', project, name='projects')
 ]
     
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,32 +1,5 @@
 pipeline{
-  agent {
-    kubernetes {
-      defaultContainer 'kaniko'
-       yaml '''
-        apiVersion: v1
-        kind: Deployment
-        metadata:
-          labels:
-            app: webblog
-            name: webblog
-        spec: 
-          replicas: 1
-          selector: 
-            matchLabels:
-              app: webblog
-          template:
-            metadata:
-              labels:
-              app: webblog
-            spec:
-              containers:
-              - name: shell
-                image: ubuntu
-                imagePullPolicy: Always
-                name: webblog
-       '''
-    }
-  }
+  agent any
   parameters {
     booleanParam(name: 'executeTests', defaultValue: true, description:'')
     booleanParam(name: 'executeBuild', defaultValue: true, description:'')
@@ -45,6 +18,9 @@ pipeline{
 
       steps{
         echo "building the application..."
+        scripts{
+          def customImage = docker.build("webblog:latest")
+        }
         echo "finished building"
       }
     }
@@ -57,7 +33,12 @@ pipeline{
 
       steps{
         echo 'testing the application...'
-        echo 'mid of testing'
+        scripts {
+          customImage.inside {
+            sh "python3 manage.py runserver" 
+          }
+          customImage.push()
+        }
         echo 'finished testing'
       }
     }

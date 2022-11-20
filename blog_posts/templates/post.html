@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block post%}
+
+<style>
+    #post{
+        margin-top: 2%;
+    }
+</style>
+
+
+<div id='post'>
+    {%if post%}
+        <box class='box'>
+            <p class='title is-5'>{{post.title}}</p>
+                <p class='subtitle is-6'>{{post.author.name}} </p>
+                
+                <p>
+                    <small>@{{post.author}}</small> <small>{{post.timestamp}}</small>
+                    <br>
+                    {% for cat in post.categories.all%}
+                      <span class="tag is-light is-normal is-rounded"><small>{{cat}}</small></span>
+                    {%endfor%}  
+                    <br>
+                    {{post.content}}
+                </p>
+        </box>
+    {%endif%}
+</div>
+{%endblock%}

@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+
+{%block all_posts%}
+
+<div style="margin-top: 5%;" >
+    {%if posts%}
+        {%for obj in posts%}
+            <box class='box' onclick="location.href='{%url 'post' obj.id%}'">
+                <p class='title is-5'>{{obj.title}}</p>
+                <p class='subtitle is-6'>{{obj.author.name}} </p>
+                
+                <p>
+                    <small>@{{obj.author}}</small> <small>{{obj.timestamp}}</small>
+                    <br>
+                    {% for cat in obj.categories.all%}
+                      <span class="tag is-light is-normal is-rounded"><small>{{cat}}</small></span>
+                    {%endfor%}  
+                    <br>
+                    {{obj.overview}}
+                </p>
+            </box>
+        {%endfor%}
+    {%endif%}
+
+    {% comment %} <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+        <a class="pagination-previous">Previous</a>
+        <a class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+          <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+          <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
+          <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+          <li><span class="pagination-ellipsis">&hellip;</span></li>
+          <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+        </ul>
+      </nav> {% endcomment %}
+</div>
+
+{%endblock%}

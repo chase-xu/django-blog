@@ -13,8 +13,8 @@ class Author(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=20)
-    subtitle = models.CharField(max_length=20)
-    slug = models.SlugField()
+    subtitle = models.CharField(max_length=20, null=True)
+    slug = models.SlugField(null=True)
     thumbnail = models.ImageField(blank=True)
 
     def __str__(self):
@@ -23,15 +23,17 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    slug = models.SlugField()
+    slug = models.SlugField(null=True)
     overview = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField(blank=True)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, related_name='Post')
     featured = models.BooleanField()
 
     def __str__(self):
         return self.title
+
+
 

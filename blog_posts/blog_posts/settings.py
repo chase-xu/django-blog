@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'blog',
     'tailwind',
     'theme',
-    'django_browser_reload'
+    'django_browser_reload',
+    'resume',
+    'projects',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -77,6 +79,9 @@ TEMPLATES = [
         },
     },
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 WSGI_APPLICATION = 'blog_posts.wsgi.application'
 

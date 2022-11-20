@@ -1,5 +1,55 @@
 {%extends 'base.html' %}
 
-<div>
+{%block resume%}
+<style>
+    #resume {
+        margin-top: 5%;
+        margin-left: 10%;
+        margin-right: 10%;
+     
+    }
+    .exp {
+        margin: 3%;
+        padding-bottom: 2%;
+        border-bottom: black solid;
+    }
+    .logos{
+        flex: 1 1 auto;
+        max-height: 80px;
+        max-width: 80px;
+        margin: 1%;
+    }
+</style>
+<div id='resume'>
+    {%if exps%}
+        <div>
+            <p class='title is-4'>Experiences</p>
+            {%for obj in exps%}
+                <div class='exp'>
+                    <p class='title is-5'>{{obj.title}}</p>
+                    <p class='subtitle is-6' style="margin-bottom: 2%;">{{obj.company}}, <small>{{obj.start_date}} - {{obj.end_date}}</small></p>
+                    {%for duty in obj.duty%}
+                    <p>{{duty}}</p>
+                    {%endfor%}
+                </div>
+            {%endfor%}
+        </div>
+        
+        <div style="margin-top: 5%;">
+            <p class='title is-4'>Education</p>
+            {%for obj in schools%}
+            <div style='display: flex; margin: 2%;'>
+                <img class='logos' src="../../media/{{obj.logo}}">
+                <div style="margin-left: 2%;">
+                    <p class='title is-5'>{{obj.name}}</p>
+                    <p class='subtitle is-6'>{{obj.degree}}, {{obj.start_date}} - {{obj.end_date}}</p>
+                </div>        
+            </div>
+            {%endfor%}
+        </div>
+
+
+    {%endif%}
 
 </div>
+{%endblock resume%}
