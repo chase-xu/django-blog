@@ -1,12 +1,16 @@
-
-
+{% comment %} {%load tailwind_tags%} {% endcomment %}
+{%load django_bootstrap5%}
 <!doctype html>
 <html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {%bootstrap_css%}
+  {%bootstrap_javascript%}
+  {% bootstrap_messages %}
+  {% comment %} {% tailwind_css %} {% endcomment %}
   {% comment %} <script src="<https://cdn.tailwindcss.com>"></script> {% endcomment %}
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> {% endcomment %}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body{
@@ -21,25 +25,44 @@
       margin-right: 25%;
       margin-bottom: 20%;
     }
-    nav > a:hover {
+    .nav-item{
+      font-weight: 300;
+      font-size: 18px;
+      text-color: black;
+    }
+    .nav-item:hover {
       text-decoration: underline;
     }
-    
+    .navbar-brand:hover {
+      text-decoration: underline;
+    }
 
   </style>
 </head>
 <body>
   <main>
-    <div id='navbar'>
-      <nav class='navbar is-transparent' role='navigation'>
-        <a class='navbar-item has-text-black' href='/posts/featured/'><h2 class='title is-2' >Chase Xu</h2></a>
+    <div id='navbar' >
+      <nav class='navbar  navbar-expand-lg' role='navigation'>
+        <a class='navbar-brand text-dark' href='/posts/featured/'><h2 >Chase Xu</h2></a>
         <span aria-hidden="true"></span>
-        <div class='navbar-end'>
-          <a class="navbar-item" href='/posts/featured/'>Featured</a>
-          <a class="navbar-item" href='/posts/all/'>Posts</a>
-          <a class="navbar-item" >About</a>
-          <a class="navbar-item" href='/resume'>Resume</a>
-          <a class="navbar-item" href='/projects'>Projects</a>
+        <div class='collapse navbar-collapse justify-content-end'>
+          <ul class=" nav mr-2 ml-2 mt-2 mt-lg-0">
+            <li class="nav-item ">
+              <a class='nav-link text-dark'  href='/posts/featured/'>Featured</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link text-dark'  href='/posts/all/'>Posts</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href='/resume'>Resume</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href='/projects'>Projects</a>
+            </li>
+          </ul>
         </div>
       </nav>
     </div>
@@ -53,6 +76,10 @@
       {%block resume%}
       {%endblock resume%}
       {%block projects%}
+      {%endblock%}
+      {%block abouts%}
+      {%endblock%}
+      {%block category%}
       {%endblock%}
     </div>
   </main>

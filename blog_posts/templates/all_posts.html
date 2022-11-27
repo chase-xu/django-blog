@@ -2,23 +2,35 @@
 
 {%block all_posts%}
 
+<style>
+    .card{
+        margin-bottom: 2%;
+    }
+    .card-title:hover{
+        text-decoration: underline;
+    }
+    .btn{
+        background: rgb(240, 240, 240);
+        padding: 0;
+    }
+</style>
+
+
 <div style="margin-top: 5%;" >
     {%if posts%}
         {%for obj in posts%}
-            <box class='box' onclick="location.href='{%url 'post' obj.id%}'">
-                <p class='title is-5'>{{obj.title}}</p>
-                <p class='subtitle is-6'>{{obj.author.name}} </p>
-                
-                <p>
+            <div class='card' >
+                <div class="card-body">
+                    <h3 class="card-title" style="cursor: pointer;" onclick="location.href='{%url 'post' obj.id%}'">{{obj.title}}</h3>
                     <small>@{{obj.author}}</small> <small>{{obj.timestamp}}</small>
-                    <br>
                     {% for cat in obj.categories.all%}
-                      <span class="tag is-light is-normal is-rounded"><small>{{cat}}</small></span>
+                        <button class="btn btn-sm" onclick="location.href='{%url 'category' cat.id%}'"><small>{{cat}}</small></button>
                     {%endfor%}  
                     <br>
-                    {{obj.overview}}
-                </p>
-            </box>
+                    <br>
+                    <p class="card-text">{{obj.overview}}</p>
+                </div>
+            </div>
         {%endfor%}
     {%endif%}
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from .models import Post, Category, Author
+from .models import Post, Category, Author, About
 from django.core.paginator import Paginator
 # Create your views here.
 
@@ -20,20 +20,19 @@ def post(request, postid=1):
     }
     return render(request, 'post.html', context)
 
-def about(request):
-    return render(request, 'about_page.html')
 
-def category_post_list (request, slug):
-    category = Category.objects.get(slug=slug)
-    posts = Post.objects.filter(categories__in=[category])
+def category_post_list (request, category):
+    # category = Category.objects.get(cat)
+    # posts = Post.objects.filter(categories__in=[category])
+    posts = Post.objects.filter(categories=category)
     context = {
         'posts': posts
     }
-    return render(request, 'post_list.html', context)
+    return render(request, 'category.html', context)
 
 def allposts(request, page=1):
     posts = Post.objects.order_by('-timestamp')
-    categories = Post.categories
+    # categories = Post.categories
     # paginator= Paginator(posts, per_page=6)
     # page_object = paginator.get_page(page)
     context = {
@@ -63,3 +62,9 @@ def allposts_api(request):
     }
     return JsonResponse(payload)
 
+def about(request):
+    content = About.objects.get()
+    context = {
+        'content': content
+    }
+    return render(request, 'about.html', context)

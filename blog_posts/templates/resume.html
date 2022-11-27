@@ -2,54 +2,54 @@
 
 {%block resume%}
 <style>
-    #resume {
-        margin-top: 5%;
-        margin-left: 10%;
-        margin-right: 10%;
-     
-    }
+
     .exp {
-        margin: 3%;
-        padding-bottom: 2%;
+        margin-bottom: 2%;
+        padding-bottom: 5%;
         border-bottom: black solid;
-    }
+    } 
     .logos{
         flex: 1 1 auto;
         max-height: 80px;
         max-width: 80px;
         margin: 1%;
     }
+    .section-title {
+        border-bottom: solid black;
+        margin-bottom: 3%;
+    }
 </style>
-<div id='resume'>
+<div class="card" id='resume'>
+    <div class="card-body">
     {%if exps%}
         <div>
-            <p class='title is-4'>Experiences</p>
+            <h3 class="card-title section-title">Experiences</h3>
             {%for obj in exps%}
                 <div class='exp'>
-                    <p class='title is-5'>{{obj.title}}</p>
-                    <p class='subtitle is-6' style="margin-bottom: 2%;">{{obj.company}}, <small>{{obj.start_date}} - {{obj.end_date}}</small></p>
+                    <h5 >{{obj.title}}</h5>
+                    <p class='card-subtitle' style="margin-bottom: 2%;">{{obj.company}}, <small>{{obj.start_date}} - {{obj.end_date}}</small></p>
                     {%for duty in obj.duty%}
-                    <p>{{duty}}</p>
+                        <div class="card-text" style="font-family: san-serif">{{duty}}</div>
                     {%endfor%}
                 </div>
             {%endfor%}
         </div>
         
         <div style="margin-top: 5%;">
-            <p class='title is-4'>Education</p>
+            <h3 class="card-title section-title">Education</h3>
             {%for obj in schools%}
-            <div style='display: flex; margin: 2%;'>
-                <img class='logos' src="../../media/{{obj.logo}}">
-                <div style="margin-left: 2%;">
-                    <p class='title is-5'>{{obj.name}}</p>
-                    <p class='subtitle is-6'>{{obj.degree}}, {{obj.start_date}} - {{obj.end_date}}</p>
-                </div>        
-            </div>
+                <div style='display: flex; margin: 2%;'>
+                    <img class='logos' src="../../media/{{obj.logo}}">
+                    <div style="margin-left: 2%;">
+                        <h6 class='card-title'>{{obj.name}}</h6>
+                        <p class='card-subtitle'>{{obj.degree}}, {{obj.start_date}} - {{obj.end_date}}</p>
+                    </div>        
+                </div>
             {%endfor%}
         </div>
 
 
     {%endif%}
-
+    </div>
 </div>
 {%endblock resume%}

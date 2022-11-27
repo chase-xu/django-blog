@@ -5,10 +5,8 @@
 {% block projects%}
 
 <style>
-    #projects{
-        margin-top: 3%;
-        margin-left: 10%;
-        margin-right: 10%;
+    .card{
+        margin-bottom: 2%;
     }
     .project-title{
         color: black;
@@ -21,13 +19,19 @@
 <div id='projects'>
     {%if projects%}
         {%for obj in projects%}
-            <p class='title is-4'><a class='project-title' href={{obj.url}} target='_blank' >{{obj.name}}</a></p>
-            <p class='subtitle is-6' style="margin-bottom: 1%;">
-                <a style="color: black;" href={{obj.github}} target='_blank'><small><i class="fa fa-github" style="font-size:24px"></i>Github</small></a>, {{obj.start_date}} - {{obj.end_date}}
-            </p>
-            {%for des in obj.description%}
-                <p>{{des}}</p>
-            {%endfor%}
+            <div class="card">
+                <div class="card-body">
+                    <h5 class='card-title'><a class='project-title' href={{obj.url}} target='_blank' >{{obj.name}}</a></h5>
+                    <p style="margin-bottom: 1%;">
+                        <a style="color: black;" href={{obj.github}} target='_blank'><small><i class="fa fa-github" style="font-size:24px"></i>Github</small></a>, {{obj.start_date}} - {{obj.end_date}}
+                    </p>
+                    <div class="card-text">
+                        {%for des in obj.description%}
+                            <div>{{des}}</div>
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
         {%endfor%} 
     {%endif%}
 </div>

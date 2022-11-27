@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+
+{%block category%}
+
+<style>
+    .card{
+        margin-bottom: 2%;
+    }
+    .card-title:hover{
+        text-decoration: underline;
+    }
+    .btn{
+        background: rgb(240, 240, 240);
+        padding: 0;
+    }
+</style>
+
+<div id="category">
+    {%if posts%}
+    {%for obj in posts%}
+        <div class='card' >
+            <div class="card-body">
+                <h3 class="card-title" style="cursor: pointer;" onclick="location.href='{%url 'post' obj.id%}'">{{obj.title}}</h3>
+                <small>@{{obj.author}}</small> <small>{{obj.timestamp}}</small>
+                {% for cat in obj.categories.all%}
+                    <button class="btn btn-sm" onclick="location.href='{%url 'category' cat.id%}'"><small>{{cat}}</small></button>
+                {%endfor%}  
+                <br>
+                <br>
+                <p class="card-text">{{obj.overview}}</p>
+            </div>
+        </div>
+    {%endfor%}
+    {%endif%}
+</div>
+{%endblock%}

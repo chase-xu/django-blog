@@ -6,25 +6,30 @@
     #post{
         margin-top: 2%;
     }
+    .card{
+
+    }
+    .btn{
+        padding: 0;
+        background: rgb(240, 240, 240);
+    }
 </style>
 
 
 <div id='post'>
     {%if post%}
-        <box class='box'>
-            <p class='title is-5'>{{post.title}}</p>
-                <p class='subtitle is-6'>{{post.author.name}} </p>
-                
-                <p>
-                    <small>@{{post.author}}</small> <small>{{post.timestamp}}</small>
-                    <br>
-                    {% for cat in post.categories.all%}
-                      <span class="tag is-light is-normal is-rounded"><small>{{cat}}</small></span>
-                    {%endfor%}  
-                    <br>
-                    {{post.content}}
+        <div class='card'>
+            <div class="card-body">
+                <h3 class='card-title'>{{post.title}}</h3>
+                <small>@{{post.author}} {{post.timestamp}}</small>
+                {%for cat in post.categories.all%}
+                    <button class="btn btn-sm"><small>{{cat}}</small></button>
+                {%endfor%}  
+                <p class="card-text" style="margin-top: 2%;">
+                    {{post.content.html|safe}}
                 </p>
-        </box>
+            </div>
+        </div>
     {%endif%}
 </div>
 {%endblock%}

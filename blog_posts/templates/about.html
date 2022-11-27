@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+
+{%block abouts%}
+<div id="about">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">About</h4>
+            <div >
+                {{content.about.html|safe}}
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

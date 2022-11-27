@@ -40,14 +40,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'tailwind',
-    'theme',
+    # 'tailwind',
+    # 'theme',
     'django_browser_reload',
     'resume',
     'projects',
+    'django_quill',
+    'django_bootstrap5',
+    
 ]
 
-TAILWIND_APP_NAME = 'theme'
+# TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = '/usr/local/bin/npm'
 
 MIDDLEWARE = [

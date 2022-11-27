@@ -29,12 +29,14 @@ from django.conf import settings
 urlpatterns = [
     path('', homepage, name = 'posts'),
     path('post/<int:postid>/', post, name='post'),
+    path('post/category/<int:category>/', category_post_list, name='category'),
     path('posts/all/', allposts, name='allposts'),
     path('posts/featured/', homepage, name='posts'),
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path("resume/", resume, name='resume'),
-    path('projects/', project, name='projects')
+    path('projects/', project, name='projects'),
+    path('about/',  about, name='abouts',),
 ]
     
 urlpatterns += staticfiles_urlpatterns()

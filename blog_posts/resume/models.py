@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
+from django_quill.fields import QuillField
 # Create your models here.
 User = get_user_model()
 
@@ -10,6 +10,7 @@ class Experience(models.Model):
     start_date = models.DateField(default=None, null=True)
     end_date = models.DateField(default=None, null=True)
     duty = models.TextField(null=True)
+    description = QuillField(default=None, null=True)
 
     def __str__(self):
         return self.company

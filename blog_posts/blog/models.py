@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
+from django_quill.fields import QuillField
 # Create your models here.
 User = get_user_model()
 
@@ -26,7 +26,7 @@ class Post(models.Model):
     slug = models.SlugField(null=True)
     overview = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
-    content = models.TextField()
+    content = QuillField()
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField(blank=True)
     categories = models.ManyToManyField(Category, related_name='Post')
@@ -36,4 +36,9 @@ class Post(models.Model):
         return self.title
 
 
+class About(models.Model):
+    name = models.CharField(max_length=10)
+    about = QuillField(null=True)
 
+    def __str__(self):
+        return self.name
