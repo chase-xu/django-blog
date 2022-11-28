@@ -1,57 +1,57 @@
-pipeline{
+pipeline {
+
   agent any
   parameters {
     booleanParam(name: 'executeTests', defaultValue: true, description:'')
     booleanParam(name: 'executeBuild', defaultValue: true, description:'')
     booleanParam(name: 'executeDeploy', defaultValue: true, description:'')
   }
-  triggers {
-    githubPush()
-  }
   stages{
-    stage('build'){
+    stage('build') {
       when{
         expression{
           params.executeBuild
         }
       }
-
       steps{
-        echo "building the application..."
-        scripts{
-          def customImage = docker.build("webblog:latest")
+        echo "building ..."
+        script{
+          withCredentials([
+              string(
+                credentialsId: 'BLOG_SECRET_KEY',
+                variable: 'SK')
+          ]) {
+            docker.withRegistry('', 'docker'){
+                def img = docker.build('chaseatdocker/web-blog:latest', "--build-arg SECRET_KEY='${SK}' ./")
+                img.push()
+            }
+          }
         }
-        echo "finished building"
       }
     }
     stage('test'){
-      when {
-        expression {
+      when{
+        expression{
           params.executeTests
         }
       }
-
       steps{
-        echo 'testing the application...'
-        scripts {
-          customImage.inside {
-            sh "python3 manage.py runserver" 
-          }
-          customImage.push()
-        }
-        echo 'finished testing'
+        echo "testing ..."
       }
     }
     stage('deploy'){
-      when {
-        expression {
+      when{
+        expression{
           params.executeDeploy
         }
       }
       steps{
-        echo 'deploying the application...'
-        echo 'finished deploying'
+        echo "deploying ..."
+        echo "starting docker container"
+        sh 'docker-compose -f compose.yml up -d'
+        echo "dcoker container started"
+        echo "finished deploying"
       }
     }
-  } 
+  }
 }

@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  webblog:
+    image: chaseatdocker/web-blog:latest
+    build: ./
+    ports: 
+      - 8444:8080
+    environment:
+      - PORT=8080
+    restart: on-failure
+    

@@ -22,14 +22,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1k^)hy=)9ocmz3@9)8xgnk0&3f&#(4rdl4q2hwn7n(0=)t3#tt'
+# SECRET_KEY = 'django-insecure-1k^)hy=)9ocmz3@9)8xgnk0&3f&#(4rdl4q2hwn7n(0=)t3#tt'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS = ['www.blogchase.net', 'blogchase.net']
+SECURE_HSTS_SECONDS = 3600
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_PRELOAD = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,8 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    # 'tailwind',
-    # 'theme',
     'django_browser_reload',
     'resume',
     'projects',
@@ -50,7 +53,6 @@ INSTALLED_APPS = [
     
 ]
 
-# TAILWIND_APP_NAME = 'theme'
 NPM_BIN_PATH = '/usr/local/bin/npm'
 
 MIDDLEWARE = [
