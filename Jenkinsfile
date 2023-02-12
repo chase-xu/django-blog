@@ -19,7 +19,9 @@ pipeline{
     }
     stage('post build'){
       steps{
-        
+        script{
+          println("post build")
+        }
       }
     }
   } 
