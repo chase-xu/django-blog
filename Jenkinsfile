@@ -10,47 +10,11 @@ pipeline{
   }
   stages{
     stage('build'){
-      when{
-        expression{
-          params.executeBuild
-        }
-      }
-
       steps{
-        echo "building the application..."
-        scripts{
-          def customImage = docker.build("webblog:latest")
+        script{
+          result = sh(script: 'docker-compose up', returnStdout: true).trim()
+          println(result)
         }
-        echo "finished building"
-      }
-    }
-    stage('test'){
-      when {
-        expression {
-          params.executeTests
-        }
-      }
-
-      steps{
-        echo 'testing the application...'
-        scripts {
-          customImage.inside {
-            sh "python3 manage.py runserver" 
-          }
-          customImage.push()
-        }
-        echo 'finished testing'
-      }
-    }
-    stage('deploy'){
-      when {
-        expression {
-          params.executeDeploy
-        }
-      }
-      steps{
-        echo 'deploying the application...'
-        echo 'finished deploying'
       }
     }
   } 
