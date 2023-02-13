@@ -1,7 +1,7 @@
 pipeline{
   agent any
-  parameters {
-  }
+//   parameters {
+//   }
   triggers {
     githubPush()
   }
@@ -18,7 +18,7 @@ pipeline{
     stage('post build'){
       steps{
         script{
-          println("post build")
+//           println("post build")
         }
       }
     }
