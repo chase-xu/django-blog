@@ -2,9 +2,9 @@ pipeline{
   agent any
   parameters {
   }
-//   triggers {
-//     githubPush()
-//   }
+  triggers {
+    githubPush()
+  }
   stages{
     stage('build'){
       steps{
