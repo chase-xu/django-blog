@@ -9,9 +9,9 @@ pipeline{
     stage('build'){
       steps{
         script{
-          println("building....")
-          result = sh(script: 'docker-compose up', returnStdout: true).trim()
-          println(result)
+//           println("building....")
+//           result = sh(script: 'docker-compose up', returnStdout: true).trim()
+//           println(result)
         }
       }
     }
