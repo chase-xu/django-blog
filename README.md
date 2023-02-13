@@ -1,3 +1,3 @@
 # django-blog
 Django Blog
-Jenkins automation pipline
+Integrate with Jenkins automation pipline
