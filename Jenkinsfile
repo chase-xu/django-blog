@@ -1,13 +1,10 @@
 pipeline{
   agent any
   parameters {
-    booleanParam(name: 'executeTests', defaultValue: true, description:'')
-    booleanParam(name: 'executeBuild', defaultValue: true, description:'')
-    booleanParam(name: 'executeDeploy', defaultValue: true, description:'')
   }
-  triggers {
-    githubPush()
-  }
+//   triggers {
+//     githubPush()
+//   }
   stages{
     stage('build'){
       steps{
