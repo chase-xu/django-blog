@@ -9,7 +9,7 @@ pipeline{
     stage('build'){
       steps{
         script{
-//           println("building....")
+          println("building....")
 //           result = sh(script: 'docker-compose up', returnStdout: true).trim()
 //           println(result)
         }
@@ -18,7 +18,7 @@ pipeline{
     stage('post build'){
       steps{
         script{
-//           println("post build")
+          println("post build")
         }
       }
     }
