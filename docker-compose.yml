@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: 3.3
 kind: Pod
 metadata:
    name: redis-pod
